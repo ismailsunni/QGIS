@@ -1,0 +1,22 @@
+<GetFeature xmlns="http://www.opengis.net/wfs" service="WFS" version="1.1.0" outputFormat="GML2" maxFeatures="1000" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Query typeName="mosque" srsName="EPSG:4326" xmlns:feature="http://www.qgis.org/gml">
+        <Filter xmlns="http://www.opengis.net/ogc">
+            <Within>
+                <PropertyName>geometry</PropertyName>
+                <Polygon xmlns="http://www.opengis.net/gml" srsName="EPSG:4326">
+                    <exterior>
+                        <LinearRing srsName="EPSG:4326">
+                            <posList srsDimension="2">
+                                        110 -8
+                                        111 -8
+                                        111 -7
+                                        110 -7
+                                        110 -8
+                            </posList>
+                        </LinearRing>
+                    </exterior>
+                </Polygon>
+            </Within>
+        </Filter>
+    </Query>
+</GetFeature>
