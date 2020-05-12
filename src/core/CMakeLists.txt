@@ -1660,11 +1660,13 @@ TARGET_LINK_LIBRARIES(qgis_core
 IF (FORCE_STATIC_PROVIDERS)
   INCLUDE_DIRECTORIES(
     ${CMAKE_SOURCE_DIR}/src/providers/wms
+    ${CMAKE_SOURCE_DIR}/src/providers/wfs
     ${CMAKE_SOURCE_DIR}/src/providers/postgres
   )
 
   TARGET_LINK_LIBRARIES(qgis_core
     wmsprovider_a
+    wfsprovider_a
     postgresprovider_a
   )
 ENDIF (FORCE_STATIC_PROVIDERS)

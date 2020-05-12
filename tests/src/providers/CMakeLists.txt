@@ -16,6 +16,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_SOURCE_DIR}/src/core/raster
   ${CMAKE_SOURCE_DIR}/src/core/symbology
   ${CMAKE_SOURCE_DIR}/src/core/effects
+  ${CMAKE_SOURCE_DIR}/src/providers/wfs
   ${CMAKE_SOURCE_DIR}/src/providers/wms
   ${CMAKE_SOURCE_DIR}/src/providers/postgres
   ${CMAKE_SOURCE_DIR}/src/providers/arcgisrest
@@ -90,6 +91,10 @@ TARGET_LINK_LIBRARIES(qgis_wmscapabilitiestest wmsprovider_a qgis_core)
 ADD_QGIS_TEST(wmsccapabilitiestest
               testqgswmsccapabilities.cpp)
 TARGET_LINK_LIBRARIES(qgis_wmsccapabilitiestest wmsprovider_a qgis_core)
+
+ADD_QGIS_TEST(wfscapabilitiestest
+              testqgswfscapabilities.cpp)
+TARGET_LINK_LIBRARIES(qgis_wfscapabilitiestest wfsprovider_a qgis_core)
 
 ADD_QGIS_TEST(wmsprovidertest
               testqgswmsprovider.cpp)

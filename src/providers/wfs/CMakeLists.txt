@@ -69,7 +69,34 @@ INCLUDE_DIRECTORIES(SYSTEM
   ${GDAL_INCLUDE_DIR}
 )
 
+# static library
+ADD_LIBRARY(wfsprovider_a STATIC ${WFS_SRCS})
+TARGET_LINK_LIBRARIES(wfsprovider_a
+  ${Qt5Xml_LIBRARIES}
+  ${Qt5Core_LIBRARIES}
+  ${Qt5Svg_LIBRARIES}
+  ${Qt5Network_LIBRARIES}
+  ${Qt5Sql_LIBRARIES}
+  ${Qt5Concurrent_LIBRARIES}
+)
+TARGET_COMPILE_DEFINITIONS(wfsprovider_a PRIVATE)
+
 IF (WITH_GUI)
+  ADD_LIBRARY(wfsprovider_gui_a STATIC ${WFS_GUI_SRCS})
+  TARGET_LINK_LIBRARIES(wfsprovider_gui_a
+    ${Qt5Xml_LIBRARIES}
+    ${Qt5Core_LIBRARIES}
+    ${Qt5Svg_LIBRARIES}
+    ${Qt5Network_LIBRARIES}
+    ${Qt5Sql_LIBRARIES}
+    ${Qt5Concurrent_LIBRARIES}
+    ${Qt5Gui_LIBRARIES}
+    ${Qt5Widgets_LIBRARIES}
+  )
+    TARGET_COMPILE_DEFINITIONS(wfsprovider_gui_a PRIVATE "-DQT_NO_FOREACH")
+    ADD_DEPENDENCIES(wfsprovider_gui_a ui)
+    ADD_DEPENDENCIES(wfsprovider_a ui)
+
   INCLUDE_DIRECTORIES(SYSTEM
     ${QSCINTILLA_INCLUDE_DIR}
   )

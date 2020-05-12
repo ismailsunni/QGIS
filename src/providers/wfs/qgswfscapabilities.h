@@ -153,6 +153,8 @@ class QgsWfsCapabilities : public QgsWfsRequest
     void parseFilterCapabilities( const QDomElement &filterCapabilitiesElem );
 
     static QString NormalizeSRSName( QString crsName );
+
+    friend class TestQgsWfsCapabilities;
 };
 
 #endif // QGSWFSCAPABILITIES_H

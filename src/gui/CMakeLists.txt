@@ -1368,6 +1368,7 @@ IF (FORCE_STATIC_PROVIDERS)
   )
   TARGET_LINK_LIBRARIES(qgis_gui
     wmsprovider_gui_a
+    wfsprovider_gui_a
     postgresprovider_gui_a
   )
 ENDIF (FORCE_STATIC_PROVIDERS)
