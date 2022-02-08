@@ -414,6 +414,26 @@ void QgsLayerTreeViewDefaultActions::zoomToLayers( QgsMapCanvas *canvas, const Q
   if ( extent.isNull() )
     return;
 
+  // Respect the map canvas rotation
+  auto rotation = canvas->rotation();
+  QgsPointXY corner1 = QgsPointXY( extent.xMinimum(), extent.yMinimum() );
+  QgsPointXY corner2 = QgsPointXY( extent.xMaximum(), extent.yMinimum() );
+  QgsPointXY corner3 = QgsPointXY( extent.xMaximum(), extent.yMaximum() );
+  QgsPointXY corner4 = QgsPointXY( extent.xMinimum(), extent.yMaximum() );
+
+  double radiantRotation = rotation * M_PI / 180;
+
+  // Rotate each corner
+  corner1.rotate( radiantRotation, extent.center() );
+  corner2.rotate( radiantRotation, extent.center() );
+  corner3.rotate( radiantRotation, extent.center() );
+  corner4.rotate( radiantRotation, extent.center() );
+
+  extent.include( corner1 );
+  extent.include( corner2 );
+  extent.include( corner3 );
+  extent.include( corner4 );
+
   // Increase bounding box with 5%, so that layer is a bit inside the borders
   extent.scale( 1.05 );
 

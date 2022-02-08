@@ -233,6 +233,11 @@ Compares this point with another point with a fuzzy tolerance
 Multiply x and y by the given value
 %End
 
+    void rotate( double rotation, const QgsPointXY &center );
+%Docstring
+Rotate x, y by the given rotation (in radiant) with the given rotation center
+%End
+
 
     QgsVector operator-( const QgsPointXY &p ) const;
 

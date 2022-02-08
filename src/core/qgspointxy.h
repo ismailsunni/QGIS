@@ -301,6 +301,22 @@ class CORE_EXPORT QgsPointXY
       mY *= scalar;
     }
 
+    //! Rotate x, y by the given rotation (in radiant) with the given rotation center
+    void rotate( double rotation, const QgsPointXY &center )
+    {
+      // Move by the center
+      double x = this->x() - center.x();
+      double y = this->y() - center.y();
+
+      // Rotate by the rotation
+      double new_x = x * cos( rotation ) - y * sin( rotation );
+      double new_y = x * sin( rotation ) + y * cos( rotation );
+
+      // Move back by the center
+      this->setX( new_x + center.x() );
+      this->setX( new_y + center.y() );
+    }
+
     //! Assignment
     QgsPointXY &operator=( const QgsPointXY &other ) SIP_HOLDGIL
     {
