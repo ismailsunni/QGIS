@@ -41,6 +41,7 @@
 #include "qgslinesymbol.h"
 #include "qgsmarkersymbol.h"
 #include "qgsiconutils.h"
+#include "qgsmessagelog.h"
 
 #include <QAction>
 #include <QFile>
@@ -653,6 +654,7 @@ void QgsStyleManagerDialog::copyItem()
     case QgsStyle::TextFormatEntity:
     {
       const QgsTextFormat format( mStyle->textFormat( details.name ) );
+      QgsMessageLog::logMessage( QString( "TextFormatEntity: %1" ).arg( format.toMimeData()->text() ), QStringLiteral( "Style" ) );
       QApplication::clipboard()->setMimeData( format.toMimeData() );
       break;
     }
@@ -660,6 +662,7 @@ void QgsStyleManagerDialog::copyItem()
     case QgsStyle::LabelSettingsEntity:
     {
       const QgsTextFormat format( mStyle->labelSettings( details.name ).format() );
+      QgsMessageLog::logMessage( QString( "LabelSettingsEntity: %1" ).arg( format.toMimeData()->text() ), QStringLiteral( "Style" ) );
       QApplication::clipboard()->setMimeData( format.toMimeData() );
       break;
     }
@@ -709,6 +712,7 @@ void QgsStyleManagerDialog::pasteItem()
 
   bool ok = false;
   const QgsTextFormat format = QgsTextFormat::fromMimeData( QApplication::clipboard()->mimeData(), &ok );
+  QgsMessageLog::logMessage( QString( "result: %1" ).arg( format.toMimeData()->text() ), QStringLiteral( "Style" ) );
   if ( ok )
   {
     QgsStyleSaveDialog saveDlg( this, QgsStyle::TextFormatEntity );

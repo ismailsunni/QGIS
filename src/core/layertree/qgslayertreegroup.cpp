@@ -19,6 +19,7 @@
 #include "qgslayertreeutils.h"
 #include "qgsmaplayer.h"
 #include "qgsgrouplayer.h"
+#include "qgsmessagelog.h"
 
 #include <QDomElement>
 #include <QStringList>
@@ -334,6 +335,8 @@ QgsLayerTreeGroup *QgsLayerTreeGroup::readXml( QDomElement &element, const QgsRe
   bool checked = QgsLayerTreeUtils::checkStateFromXml( element.attribute( QStringLiteral( "checked" ) ) ) != Qt::Unchecked;
   bool isMutuallyExclusive = element.attribute( QStringLiteral( "mutually-exclusive" ), QStringLiteral( "0" ) ) == QLatin1String( "1" );
   int mutuallyExclusiveChildIndex = element.attribute( QStringLiteral( "mutually-exclusive-child" ), QStringLiteral( "-1" ) ).toInt();
+
+  QgsMessageLog::logMessage( tr( "Group: %1, expanded: %2" ).arg( name ).arg( isExpanded ) );
 
   QgsLayerTreeGroup *groupNode = new QgsLayerTreeGroup( name, checked );
   groupNode->setExpanded( isExpanded );
