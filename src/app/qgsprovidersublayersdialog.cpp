@@ -159,6 +159,7 @@ QgsProviderSublayersDialog::QgsProviderSublayersDialog( const QString &uri, cons
       mLayersTree->resizeColumnToContents( i );
     mLayersTree->setColumnWidth( 1, mLayersTree->columnWidth( 1 ) + 10 );
   }
+  mLayersTree->setSortingEnabled( true );
 
   if ( QgsProviderUtils::sublayerDetailsAreIncomplete( initialDetails ) )
   {
